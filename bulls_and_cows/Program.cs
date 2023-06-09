@@ -92,7 +92,7 @@ namespace bulls_and_cows
                     //{
                     //    Console.Write(array[i]);
                     //}
-                    //Console.WriteLine("\t (Число выводится для тестирования. В конечном варианте оно будет скрыто от игрока)");
+                    //Console.WriteLine("\t (Число выводится для тестирования. В конечном варианте оно будет скрыто от игрока)\n");
 
 
                     Console.WriteLine("Компьютер загадал число");
@@ -262,8 +262,6 @@ namespace bulls_and_cows
                             Console.WriteLine("ОШИБКА! Цифры не должны повторяться. Попробуйте ещё рвз");
                             continue;
                         }
-                        bulls = 0;
-                        cows = 0;
                         for (int i = 0; i < answer.Length; i++)
                         {
                             if (answer[i] == array[i])
@@ -642,8 +640,6 @@ namespace bulls_and_cows
                             Console.WriteLine("ОШИБКА! Цифры не должны повторяться. Попробуйте ещё рвз");
                             continue;
                         }
-                        bulls = 0;
-                        cows = 0;
                         for (int i = 0; i < answer.Length; i++)
                         {
                             if (answer[i] == array[i])
