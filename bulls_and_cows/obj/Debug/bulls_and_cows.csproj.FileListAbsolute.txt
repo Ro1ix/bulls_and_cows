@@ -6,3 +6,11 @@ C:\Users\Class_Student\source\repos\bulls_and_cows\obj\Debug\bulls_and_cows.cspr
 C:\Users\Class_Student\source\repos\bulls_and_cows\obj\Debug\bulls_and_cows.csproj.CoreCompileInputs.cache
 C:\Users\Class_Student\source\repos\bulls_and_cows\obj\Debug\bulls_and_cows.exe
 C:\Users\Class_Student\source\repos\bulls_and_cows\obj\Debug\bulls_and_cows.pdb
+C:\Users\Class_User\Desktop\bulls_and_cows-main\bulls_and_cows\bin\Debug\bulls_and_cows.exe.config
+C:\Users\Class_User\Desktop\bulls_and_cows-main\bulls_and_cows\bin\Debug\bulls_and_cows.exe
+C:\Users\Class_User\Desktop\bulls_and_cows-main\bulls_and_cows\bin\Debug\bulls_and_cows.pdb
+C:\Users\Class_User\Desktop\bulls_and_cows-main\bulls_and_cows\obj\Debug\bulls_and_cows.csproj.AssemblyReference.cache
+C:\Users\Class_User\Desktop\bulls_and_cows-main\bulls_and_cows\obj\Debug\bulls_and_cows.csproj.SuggestedBindingRedirects.cache
+C:\Users\Class_User\Desktop\bulls_and_cows-main\bulls_and_cows\obj\Debug\bulls_and_cows.csproj.CoreCompileInputs.cache
+C:\Users\Class_User\Desktop\bulls_and_cows-main\bulls_and_cows\obj\Debug\bulls_and_cows.exe
+C:\Users\Class_User\Desktop\bulls_and_cows-main\bulls_and_cows\obj\Debug\bulls_and_cows.pdb
