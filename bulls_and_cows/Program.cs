@@ -470,12 +470,12 @@ namespace bulls_and_cows
                             continue;
                         }
                     }
-                    Console.Write("Нажмите любую клавишу, когда игрок будет готов отгадывать...");
+                    Console.Write("\nНажмите любую клавишу, когда игрок будет готов отгадывать...");
                     Console.ReadKey();
                     Console.Clear();
                     Console.WriteLine("* напишите 0, если хотите вернуться в меню *\n");
                     Console.WriteLine("\tСОВМЕСТНАЯ ИГРА");
-                    Console.Write("\nЗагаданное число: ****");
+                    Console.WriteLine("\nЗагаданное число: ****");
                     while (bulls < 4)
                     {
                         Console.Write("\nВаш ответ: ");
