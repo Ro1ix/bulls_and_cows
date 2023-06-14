@@ -12,12 +12,13 @@ namespace bulls_and_cows
         {
             Console.Title = "Игра на логигу: Быки и коровы";
             string choise = "";
-            int[] array = new int[4] { -1, -1, -1, -1 };
             Random rand = new Random();
             string input;
-            int[] answer = new int[4];
             int bulls;
             int cows;
+            int size = 0;
+            bool error = false;
+            int moves = 0;
             switch (choise)
             {
                 default:
@@ -44,60 +45,69 @@ namespace bulls_and_cows
                     else Environment.Exit(0);
                     break;
                 case "1":
+                    error = false;
                     bulls = 0;
                     cows = 0;
+                    moves = 0;
                     Console.Clear();
                     Console.WriteLine("* напишите 0, если хотите вернуться в меню *\n");
-                    for (int i = 0; i < 4; i++)
+                    Console.WriteLine("Выберите сложность. Введите размер числа (от 2 до 10)");
+                    input = Console.ReadLine();
+                    if (input == "0")
+                        goto default;
+                    switch (input)
+                    {
+                        case "2": size = 2; break;
+                        case "3": size = 3; break;
+                        case "4": size = 4; break;
+                        case "5": size = 5; break;
+                        case "6": size = 6; break;
+                        case "7": size = 7; break;
+                        case "8": size = 8; break;
+                        case "9": size = 9; break;
+                        case "10": size = 10; break;
+                        default:
+                            Console.WriteLine("ОШИБКА! Нажмите любую клавишу и попробуйте ещё раз");
+                            Console.ReadKey();
+                            error = true;
+                            break;
+                    }
+                    if (error == true)
+                        goto case "1";
+                    int[] array = new int[size];
+                    int[] answer = new int[size];
+                    for (int i = 0; i < size; i++)
                     {
                         array[i] = rand.Next(0, 10);
                     }
-                    while ((array[0] == array[1]) || (array[0] == array[2]) || (array[0] == array[3]) || 
-                        (array[1] == array[2]) || (array[1] == array[3]) || (array[2] == array[3]))
+                    for (int i = 1; i < array.Length; i++)
                     {
-                        if (array[1] == array[0])
-                        { 
-                            array[1] = rand.Next(0, 10);
-                            continue;
-                        }
-                        if (array[2] == array[0])
+                        for (int j = 0; j < array.Length; j++)
                         {
-                            array[2] = rand.Next(0, 10);
-                            continue;
-                        }
-                        if (array[2] == array[1])
-                        {
-                            array[2] = rand.Next(0, 10);
-                            continue;
-                        }
-                        if (array[3] == array[0])
-                        {
-                            array[3] = rand.Next(0, 10);
-                            continue;
-                        }
-                        if (array[3] == array[1])
-                        {
-                            array[3] = rand.Next(0, 10);
-                            continue;
-                        }
-                        if (array[3] == array[2])
-                        {
-                            array[3] = rand.Next(0, 10);
-                            continue;
+                            if (i == j)
+                                continue;
+                            if (array[i] == array[j])
+                            {
+                                array[i] = rand.Next(0, 10);
+                                i = 0;
+                                j = -1;
+                            }
                         }
                     }
 
 
-                    //for (int i = 0; i < array.Length; i++)
-                    //{
-                    //    Console.Write(array[i]);
-                    //}
-                    //Console.WriteLine("\t (Число выводится для тестирования. В конечном варианте оно будет скрыто от игрока)");
-
-
-                    Console.WriteLine("Компьютер загадал число");
-                    while (bulls < 4)
+                    Console.WriteLine();
+                    for (int i = 0; i < array.Length; i++)
                     {
+                        Console.Write(array[i]);
+                    }
+                    Console.WriteLine("\t (Число выводится для тестирования. В конечном варианте оно будет скрыто от игрока)");
+
+
+                    Console.WriteLine("\nКомпьютер загадал число");
+                    while (bulls < size)
+                    {
+                        error = false;
                         Console.Write("\nВаш ответ: ");
                         input = Console.ReadLine();
                         if (input == "0")
@@ -112,156 +122,68 @@ namespace bulls_and_cows
                             Console.WriteLine("ОШИБКА! Слишком мало цифр. Должно быть 4! Попробуйте ещё раз");
                             continue;
                         }
-                        switch (input[0])
+                        for (int i = 0; i < answer.Length; i++)
                         {
-                            case '0':
-                                answer[0] = 0;
+                            switch (input[i])
+                            {
+                                case '0':
+                                    answer[i] = 0;
+                                    break;
+                                case '1':
+                                    answer[i] = 1;
+                                    break;
+                                case '2':
+                                    answer[i] = 2;
+                                    break;
+                                case '3':
+                                    answer[i] = 3;
+                                    break;
+                                case '4':
+                                    answer[i] = 4;
+                                    break;
+                                case '5':
+                                    answer[i] = 5;
+                                    break;
+                                case '6':
+                                    answer[i] = 6;
+                                    break;
+                                case '7':
+                                    answer[i] = 7;
+                                    break;
+                                case '8':
+                                    answer[i] = 8;
+                                    break;
+                                case '9':
+                                    answer[i] = 9;
+                                    break;
+                                default:
+                                    Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
+                                    error = true;
+                                    break;
+                            }
+                            if (error == true)
                                 break;
-                            case '1':
-                                answer[0] = 1;
-                                break;
-                            case '2':
-                                answer[0] = 2;
-                                break;
-                            case '3':
-                                answer[0] = 3;
-                                break;
-                            case '4':
-                                answer[0] = 4;
-                                break;
-                            case '5':
-                                answer[0] = 5;
-                                break;
-                            case '6':
-                                answer[0] = 6;
-                                break;
-                            case '7':
-                                answer[0] = 7;
-                                break;
-                            case '8':
-                                answer[0] = 8;
-                                break;
-                            case '9':
-                                answer[0] = 9;
-                                break;
-                            default:
-                                Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
-                                continue;
                         }
-                        switch (input[1])
-                        {
-                            case '0':
-                                answer[1] = 0;
-                                break;
-                            case '1':
-                                answer[1] = 1;
-                                break;
-                            case '2':
-                                answer[1] = 2;
-                                break;
-                            case '3':
-                                answer[1] = 3;
-                                break;
-                            case '4':
-                                answer[1] = 4;
-                                break;
-                            case '5':
-                                answer[1] = 5;
-                                break;
-                            case '6':
-                                answer[1] = 6;
-                                break;
-                            case '7':
-                                answer[1] = 7;
-                                break;
-                            case '8':
-                                answer[1] = 8;
-                                break;
-                            case '9':
-                                answer[1] = 9;
-                                break;
-                            default:
-                                Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
-                                continue;
-                        }
-                        switch (input[2])
-                        {
-                            case '0':
-                                answer[2] = 0;
-                                break;
-                            case '1':
-                                answer[2] = 1;
-                                break;
-                            case '2':
-                                answer[2] = 2;
-                                break;
-                            case '3':
-                                answer[2] = 3;
-                                break;
-                            case '4':
-                                answer[2] = 4;
-                                break;
-                            case '5':
-                                answer[2] = 5;
-                                break;
-                            case '6':
-                                answer[2] = 6;
-                                break;
-                            case '7':
-                                answer[2] = 7;
-                                break;
-                            case '8':
-                                answer[2] = 8;
-                                break;
-                            case '9':
-                                answer[2] = 9;
-                                break;
-                            default:
-                                Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
-                                continue;
-                        }
-                        switch (input[3])
-                        {
-                            case '0':
-                                answer[3] = 0;
-                                break;
-                            case '1':
-                                answer[3] = 1;
-                                break;
-                            case '2':
-                                answer[3] = 2;
-                                break;
-                            case '3':
-                                answer[3] = 3;
-                                break;
-                            case '4':
-                                answer[3] = 4;
-                                break;
-                            case '5':
-                                answer[3] = 5;
-                                break;
-                            case '6':
-                                answer[3] = 6;
-                                break;
-                            case '7':
-                                answer[3] = 7;
-                                break;
-                            case '8':
-                                answer[3] = 8;
-                                break;
-                            case '9':
-                                answer[3] = 9;
-                                break;
-                            default:
-                                Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
-                                continue;
-                        }
-                        if ((answer[0] == answer[1]) || (answer[0] == answer[2]) || (answer[0] == answer[3]) ||
-                        (answer[1] == answer[2]) || (answer[1] == answer[3]) || (answer[2] == answer[3]))
-                        {
-                            Console.WriteLine("ОШИБКА! Цифры не должны повторяться. Попробуйте ещё рвз");
+                        if (error == true)
                             continue;
+                        for (int i = 1; i < answer.Length; i++)
+                        {
+                            for (int j = 0; j < answer.Length; j++)
+                            {
+                                if (i == j)
+                                    continue;
+                                if (answer[i] == answer[j])
+                                {
+                                    Console.WriteLine("ОШИБКА! Цифры не должны повторяться. Попробуйте ещё рвз");
+                                    error = true;
+                                    break;
+                                }
+                            }
+                            if (error == true)
+                                break;
                         }
+                        if (error == true)
+                            continue;
                         bulls = 0;
                         cows = 0;
                         for (int i = 0; i < answer.Length; i++)
@@ -269,18 +191,30 @@ namespace bulls_and_cows
                             if (answer[i] == array[i])
                                 bulls++;
                         }
-                        if (answer[0] == array[1] || answer[0] == array[2] || answer[0] == array[3])
-                            cows++;
-                        if (answer[1] == array[0] || answer[1] == array[2] || answer[1] == array[3])
-                            cows++;
-                        if (answer[2] == array[0] || answer[2] == array[1] || answer[1] == array[3])
-                            cows++;
-                        if (answer[3] == array[0] || answer[3] == array[1] || answer[3] == array[2])
-                            cows++;
+                        for (int i = 1; i < answer.Length; i++)
+                        {
+                            for (int j = 0; j < answer.Length; j++)
+                            {
+                                if (i == j)
+                                    continue;
+                                if (answer[i] == array[j])
+                                {
+                                    cows++;
+                                }
+                            }
+                        }
                         Console.WriteLine($"Быки: {bulls}   Коровы: {cows}");
+                        moves++;
                     }
-                    Console.WriteLine("\nВы отгадали число! Поздравляем :)\n");
-                    Console.WriteLine("\t------------------------");
+                    Console.WriteLine("\nВы отгадали число! Поздравляем :)");
+                    Console.Write("\nВы затратили на это ");
+                    if ((moves % 10 == 1) & (moves % 100 != 11))
+                        Console.WriteLine($"{moves} ход");
+                    else if ((moves % 10 >= 2) & (moves % 10 <= 4) & 
+                        (moves % 100 != 12) & (moves % 100 != 13) & (moves % 100 != 14))
+                        Console.WriteLine($"{moves} хода");
+                    else Console.WriteLine($"{moves} ходов");
+                    Console.WriteLine("\n\t------------------------");
                     Console.WriteLine("\t|    1. Сыграть ещё    |");
                     Console.WriteLine("\t------------------------");
                     Console.WriteLine("\t|  2. Вернуться в меню |");
@@ -296,14 +230,42 @@ namespace bulls_and_cows
                     else Environment.Exit(0);
                     break;
                 case "2":
-                    Console.Clear();
-                    Console.WriteLine("* напишите 0, если хотите вернуться в меню *\n");
-                    Console.WriteLine("\tСОВМЕСТНАЯ ИГРА");
-                    array[3] = -1;
+                    error = false;
+                    moves = 0;
                     bulls = 0;
                     cows = 0;
-                    while (array[3] == -1)
+                    Console.Clear();
+                    Console.WriteLine("* напишите 0, если хотите вернуться в меню *\n");
+                    Console.WriteLine("\tСОВМЕСТНАЯ ИГРА\n");
+                    Console.WriteLine("Выберите сложность. Введите размер числа (от 2 до 10)");
+                    input = Console.ReadLine();
+                    if (input == "0")
+                        goto default;
+                    switch (input)
                     {
+                        case "2": size = 2; break;
+                        case "3": size = 3; break;
+                        case "4": size = 4; break;
+                        case "5": size = 5; break;
+                        case "6": size = 6; break;
+                        case "7": size = 7; break;
+                        case "8": size = 8; break;
+                        case "9": size = 9; break;
+                        case "10": size = 10; break;
+                        default:
+                            Console.WriteLine("ОШИБКА! Нажмите любую клавишу и попробуйте ещё раз");
+                            Console.ReadKey();
+                            error = true;
+                            break;
+                    }
+                    if (error == true)
+                        goto case "2";
+                    array = new int[size];
+                    answer = new int[size];
+                    array[size - 1] = -1;
+                    while (array[size - 1] == -1)
+                    {
+                        error = false;
                         Console.Write("\nЗагадайте число: ");
                         input = Console.ReadLine();
                         if (input == "0")
@@ -318,166 +280,79 @@ namespace bulls_and_cows
                             Console.WriteLine("ОШИБКА! Слишком мало цифр. Должно быть 4! Попробуйте ещё раз");
                             continue;
                         }
-                        switch (input[0])
+                        for (int i = 0; i < array.Length; i++)
                         {
-                            case '0':
-                                array[0] = 0;
-                                break;
-                            case '1':
-                                array[0] = 1;
-                                break;
-                            case '2':
-                                array[0] = 2;
-                                break;
-                            case '3':
-                                array[0] = 3;
-                                break;
-                            case '4':
-                                array[0] = 4;
-                                break;
-                            case '5':
-                                array[0] = 5;
-                                break;
-                            case '6':
-                                array[0] = 6;
-                                break;
-                            case '7':
-                                array[0] = 7;
-                                break;
-                            case '8':
-                                array[0] = 8;
-                                break;
-                            case '9':
-                                array[0] = 9;
-                                break;
-                            default:
-                                Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
-                                continue;
-                        }
-                        switch (input[1])
-                        {
-                            case '0':
-                                array[1] = 0;
-                                break;
-                            case '1':
-                                array[1] = 1;
-                                break;
-                            case '2':
-                                array[1] = 2;
-                                break;
-                            case '3':
-                                array[1] = 3;
-                                break;
-                            case '4':
-                                array[1] = 4;
-                                break;
-                            case '5':
-                                array[1] = 5;
-                                break;
-                            case '6':
-                                array[1] = 6;
-                                break;
-                            case '7':
-                                array[1] = 7;
-                                break;
-                            case '8':
-                                array[1] = 8;
-                                break;
-                            case '9':
-                                array[1] = 9;
-                                break;
-                            default:
-                                Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
-                                continue;
-                        }
-                        switch (input[2])
-                        {
-                            case '0':
-                                array[2] = 0;
-                                break;
-                            case '1':
-                                array[2] = 1;
-                                break;
-                            case '2':
-                                array[2] = 2;
-                                break;
-                            case '3':
-                                array[2] = 3;
-                                break;
-                            case '4':
-                                array[2] = 4;
-                                break;
-                            case '5':
-                                array[2] = 5;
-                                break;
-                            case '6':
-                                array[2] = 6;
-                                break;
-                            case '7':
-                                array[2] = 7;
-                                break;
-                            case '8':
-                                array[2] = 8;
-                                break;
-                            case '9':
-                                array[2] = 9;
-                                break;
-                            default:
-                                Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
-                                continue;
-                        }
-                        switch (input[3])
-                        {
-                            case '0':
-                                array[3] = 0;
-                                break;
-                            case '1':
-                                array[3] = 1;
-                                break;
-                            case '2':
-                                array[3] = 2;
-                                break;
-                            case '3':
-                                array[3] = 3;
-                                break;
-                            case '4':
-                                array[3] = 4;
-                                break;
-                            case '5':
-                                array[3] = 5;
-                                break;
-                            case '6':
-                                array[3] = 6;
-                                break;
-                            case '7':
-                                array[3] = 7;
-                                break;
-                            case '8':
-                                array[3] = 8;
-                                break;
-                            case '9':
-                                array[3] = 9;
-                                break;
-                            default:
-                                Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
+                            switch (input[i])
+                            {
+                                case '0':
+                                    array[i] = 0;
+                                    break;
+                                case '1':
+                                    array[i] = 1;
+                                    break;
+                                case '2':
+                                    array[i] = 2;
+                                    break;
+                                case '3':
+                                    array[i] = 3;
+                                    break;
+                                case '4':
+                                    array[i] = 4;
+                                    break;
+                                case '5':
+                                    array[i] = 5;
+                                    break;
+                                case '6':
+                                    array[i] = 6;
+                                    break;
+                                case '7':
+                                    array[i] = 7;
+                                    break;
+                                case '8':
+                                    array[i] = 8;
+                                    break;
+                                case '9':
+                                    array[i] = 9;
+                                    break;
+                                default:
+                                    Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
+                                    error = true;
+                                    break;
+                            }
+                            if (error == true)
                                 break;
                         }
-                        if ((array[0] == array[1]) || (array[0] == array[2]) || (array[0] == array[3]) ||
-                            (array[1] == array[2]) || (array[1] == array[3]) || (array[2] == array[3]))
-                        {
-                            Console.WriteLine("ОШИБКА! Цифры не должны повторяться. Попробуйте ещё рвз");
-                            array[3] = -1;
+                        if (error == true)
                             continue;
+                        for (int i = 1; i < array.Length; i++)
+                        {
+                            for (int j = 0; j < array.Length; j++)
+                            {
+                                if (i == j)
+                                    continue;
+                                if (array[i] == array[j])
+                                {
+                                    Console.WriteLine("ОШИБКА! Цифры не должны повторяться. Попробуйте ещё рвз");
+                                    array[size - 1] = -1;
+                                    error = true;
+                                    break;
+                                }
+                            }
+                            if (error == true)
+                                break;
                         }
+                        if (error == true)
+                            continue;
                     }
                     Console.Write("\nНажмите любую клавишу, когда игрок будет готов отгадывать...");
                     Console.ReadKey();
                     Console.Clear();
                     Console.WriteLine("* напишите 0, если хотите вернуться в меню *\n");
-                    Console.WriteLine("\tСОВМЕСТНАЯ ИГРА");
-                    Console.WriteLine("\nЗагаданное число: ****");
-                    while (bulls < 4)
+                    Console.WriteLine("\tСОВМЕСТНАЯ ИГРА\n");
+                    Console.WriteLine($"Сложность: {size}");
+                    while (bulls < size)
                     {
+                        error = false;
                         Console.Write("\nВаш ответ: ");
                         input = Console.ReadLine();
                         if (input == "0")
@@ -492,156 +367,68 @@ namespace bulls_and_cows
                             Console.WriteLine("ОШИБКА! Слишком мало цифр. Должно быть 4! Попробуйте ещё раз");
                             continue;
                         }
-                        switch (input[0])
+                        for (int i = 0; i < answer.Length; i++)
                         {
-                            case '0':
-                                answer[0] = 0;
+                            switch (input[i])
+                            {
+                                case '0':
+                                    answer[i] = 0;
+                                    break;
+                                case '1':
+                                    answer[i] = 1;
+                                    break;
+                                case '2':
+                                    answer[i] = 2;
+                                    break;
+                                case '3':
+                                    answer[i] = 3;
+                                    break;
+                                case '4':
+                                    answer[i] = 4;
+                                    break;
+                                case '5':
+                                    answer[i] = 5;
+                                    break;
+                                case '6':
+                                    answer[i] = 6;
+                                    break;
+                                case '7':
+                                    answer[i] = 7;
+                                    break;
+                                case '8':
+                                    answer[i] = 8;
+                                    break;
+                                case '9':
+                                    answer[i] = 9;
+                                    break;
+                                default:
+                                    Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
+                                    error = true;
+                                    break;
+                            }
+                            if (error == true)
                                 break;
-                            case '1':
-                                answer[0] = 1;
-                                break;
-                            case '2':
-                                answer[0] = 2;
-                                break;
-                            case '3':
-                                answer[0] = 3;
-                                break;
-                            case '4':
-                                answer[0] = 4;
-                                break;
-                            case '5':
-                                answer[0] = 5;
-                                break;
-                            case '6':
-                                answer[0] = 6;
-                                break;
-                            case '7':
-                                answer[0] = 7;
-                                break;
-                            case '8':
-                                answer[0] = 8;
-                                break;
-                            case '9':
-                                answer[0] = 9;
-                                break;
-                            default:
-                                Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
-                                continue;
                         }
-                        switch (input[1])
-                        {
-                            case '0':
-                                answer[1] = 0;
-                                break;
-                            case '1':
-                                answer[1] = 1;
-                                break;
-                            case '2':
-                                answer[1] = 2;
-                                break;
-                            case '3':
-                                answer[1] = 3;
-                                break;
-                            case '4':
-                                answer[1] = 4;
-                                break;
-                            case '5':
-                                answer[1] = 5;
-                                break;
-                            case '6':
-                                answer[1] = 6;
-                                break;
-                            case '7':
-                                answer[1] = 7;
-                                break;
-                            case '8':
-                                answer[1] = 8;
-                                break;
-                            case '9':
-                                answer[1] = 9;
-                                break;
-                            default:
-                                Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
-                                continue;
-                        }
-                        switch (input[2])
-                        {
-                            case '0':
-                                answer[2] = 0;
-                                break;
-                            case '1':
-                                answer[2] = 1;
-                                break;
-                            case '2':
-                                answer[2] = 2;
-                                break;
-                            case '3':
-                                answer[2] = 3;
-                                break;
-                            case '4':
-                                answer[2] = 4;
-                                break;
-                            case '5':
-                                answer[2] = 5;
-                                break;
-                            case '6':
-                                answer[2] = 6;
-                                break;
-                            case '7':
-                                answer[2] = 7;
-                                break;
-                            case '8':
-                                answer[2] = 8;
-                                break;
-                            case '9':
-                                answer[2] = 9;
-                                break;
-                            default:
-                                Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
-                                continue;
-                        }
-                        switch (input[3])
-                        {
-                            case '0':
-                                answer[3] = 0;
-                                break;
-                            case '1':
-                                answer[3] = 1;
-                                break;
-                            case '2':
-                                answer[3] = 2;
-                                break;
-                            case '3':
-                                answer[3] = 3;
-                                break;
-                            case '4':
-                                answer[3] = 4;
-                                break;
-                            case '5':
-                                answer[3] = 5;
-                                break;
-                            case '6':
-                                answer[3] = 6;
-                                break;
-                            case '7':
-                                answer[3] = 7;
-                                break;
-                            case '8':
-                                answer[3] = 8;
-                                break;
-                            case '9':
-                                answer[3] = 9;
-                                break;
-                            default:
-                                Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
-                                continue;
-                        }
-                        if ((answer[0] == answer[1]) || (answer[0] == answer[2]) || (answer[0] == answer[3]) ||
-                        (answer[1] == answer[2]) || (answer[1] == answer[3]) || (answer[2] == answer[3]))
-                        {
-                            Console.WriteLine("ОШИБКА! Цифры не должны повторяться. Попробуйте ещё рвз");
+                        if (error == true)
                             continue;
+                        for (int i = 1; i < answer.Length; i++)
+                        {
+                            for (int j = 0; j < answer.Length; j++)
+                            {
+                                if (i == j)
+                                    continue;
+                                if (answer[i] == answer[j])
+                                {
+                                    Console.WriteLine("ОШИБКА! Цифры не должны повторяться. Попробуйте ещё раз");
+                                    error = true;
+                                    break;
+                                }
+                            }
+                            if (error == true)
+                                break;
                         }
+                        if (error == true)
+                            continue;
                         bulls = 0;
                         cows = 0;
                         for (int i = 0; i < answer.Length; i++)
@@ -649,18 +436,30 @@ namespace bulls_and_cows
                             if (answer[i] == array[i])
                                 bulls++;
                         }
-                        if (answer[0] == array[1] || answer[0] == array[2] || answer[0] == array[3])
-                            cows++;
-                        if (answer[1] == array[0] || answer[1] == array[2] || answer[1] == array[3])
-                            cows++;
-                        if (answer[2] == array[0] || answer[2] == array[1] || answer[1] == array[3])
-                            cows++;
-                        if (answer[3] == array[0] || answer[3] == array[1] || answer[3] == array[2])
-                            cows++;
+                        for (int i = 0; i < answer.Length; i++)
+                        {
+                            for (int j = 0; j < answer.Length; j++)
+                            {
+                                if (i == j)
+                                    continue;
+                                if (answer[i] == array[j])
+                                {
+                                    cows++;
+                                }
+                            }
+                        }
                         Console.WriteLine($"Быки: {bulls}   Коровы: {cows}");
+                        moves++;
                     }
-                    Console.WriteLine("\nВы отгадали число! Поздравляем :)\n");
-                    Console.WriteLine("\t------------------------");
+                    Console.WriteLine("\nВы отгадали число! Поздравляем :)");
+                    Console.Write("\nВы затратили на это ");
+                    if ((moves % 10 == 1) & (moves % 100 != 11))
+                        Console.WriteLine($"{moves} ход");
+                    else if ((moves % 10 >= 2) & (moves % 10 <= 4) &
+                        (moves % 100 != 12) & (moves % 100 != 13) & (moves % 100 != 14))
+                        Console.WriteLine($"{moves} хода");
+                    else Console.WriteLine($"{moves} ходов");
+                    Console.WriteLine("\n\t------------------------");
                     Console.WriteLine("\t|    1. Сыграть ещё    |");
                     Console.WriteLine("\t------------------------");
                     Console.WriteLine("\t|  2. Вернуться в меню |");
@@ -678,7 +477,7 @@ namespace bulls_and_cows
                 case "3":
                     Console.Clear();
                     Console.WriteLine("\n\t   ПРАВИЛА ИГРЫ\n");
-                    Console.WriteLine("Компьютер задумывает четыре различные");
+                    Console.WriteLine("Компьютер задумывает различные");
                     Console.WriteLine("цифры от 0 до 9. Игрок делает ходы,");
                     Console.WriteLine("чтобы узнать эти цифры и их порядок.\n");
                     Console.WriteLine("Каждый ход состоит из четырёх цифр, 0");
