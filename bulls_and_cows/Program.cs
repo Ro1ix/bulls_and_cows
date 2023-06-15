@@ -96,12 +96,12 @@ namespace bulls_and_cows
                     }
 
 
-                    Console.WriteLine();
-                    for (int i = 0; i < array.Length; i++)
-                    {
-                        Console.Write(array[i]);
-                    }
-                    Console.WriteLine("\t (Число выводится для тестирования. В конечном варианте оно будет скрыто от игрока)");
+                    //Console.WriteLine();
+                    //for (int i = 0; i < array.Length; i++)
+                    //{
+                    //    Console.Write(array[i]);
+                    //}
+                    //Console.WriteLine("\t (Число выводится для тестирования. В конечном варианте оно будет скрыто от игрока)");
 
 
                     Console.WriteLine("\nКомпьютер загадал число");
@@ -114,12 +114,12 @@ namespace bulls_and_cows
                             goto default;
                         if (input.Length > array.Length)
                         {
-                            Console.WriteLine("ОШИБКА! Слишком много цифр. Должно быть 4! Попробуйте ещё раз");
+                            Console.WriteLine($"ОШИБКА! Слишком много цифр. Должно быть {size}! Попробуйте ещё раз");
                             continue;
                         }
                         if (input.Length < array.Length)
                         {
-                            Console.WriteLine("ОШИБКА! Слишком мало цифр. Должно быть 4! Попробуйте ещё раз");
+                            Console.WriteLine($"ОШИБКА! Слишком мало цифр. Должно быть {size}! Попробуйте ещё раз");
                             continue;
                         }
                         for (int i = 0; i < answer.Length; i++)
@@ -191,7 +191,7 @@ namespace bulls_and_cows
                             if (answer[i] == array[i])
                                 bulls++;
                         }
-                        for (int i = 1; i < answer.Length; i++)
+                        for (int i = 0; i < answer.Length; i++)
                         {
                             for (int j = 0; j < answer.Length; j++)
                             {
@@ -272,12 +272,12 @@ namespace bulls_and_cows
                             goto default;
                         if (input.Length > array.Length)
                         {
-                            Console.WriteLine("ОШИБКА! Слишком много цифр. Должно быть 4! Попробуйте ещё раз");
+                            Console.WriteLine($"ОШИБКА! Слишком много цифр. Должно быть {size}! Попробуйте ещё раз");
                             continue;
                         }
                         if (input.Length < array.Length)
                         {
-                            Console.WriteLine("ОШИБКА! Слишком мало цифр. Должно быть 4! Попробуйте ещё раз");
+                            Console.WriteLine($"ОШИБКА! Слишком мало цифр. Должно быть {size}! Попробуйте ещё раз");
                             continue;
                         }
                         for (int i = 0; i < array.Length; i++)
@@ -359,12 +359,12 @@ namespace bulls_and_cows
                             goto default;
                         if (input.Length > array.Length)
                         {
-                            Console.WriteLine("ОШИБКА! Слишком много цифр. Должно быть 4! Попробуйте ещё раз");
+                            Console.WriteLine($"ОШИБКА! Слишком много цифр. Должно быть {size}! Попробуйте ещё раз");
                             continue;
                         }
                         if (input.Length < array.Length)
                         {
-                            Console.WriteLine("ОШИБКА! Слишком мало цифр. Должно быть 4! Попробуйте ещё раз");
+                            Console.WriteLine($"ОШИБКА! Слишком мало цифр. Должно быть {size}! Попробуйте ещё раз");
                             continue;
                         }
                         for (int i = 0; i < answer.Length; i++)
@@ -480,7 +480,7 @@ namespace bulls_and_cows
                     Console.WriteLine("Компьютер задумывает различные");
                     Console.WriteLine("цифры от 0 до 9. Игрок делает ходы,");
                     Console.WriteLine("чтобы узнать эти цифры и их порядок.\n");
-                    Console.WriteLine("Каждый ход состоит из четырёх цифр, 0");
+                    Console.WriteLine("Каждый ход состоит из набора цифр, 0");
                     Console.WriteLine("может стоять на первом месте.\n");
                     Console.WriteLine("В ответ компьютер показывает число");
                     Console.WriteLine("отгаданных цифр, стоящих на своих");
