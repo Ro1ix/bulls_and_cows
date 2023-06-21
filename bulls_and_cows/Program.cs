@@ -145,36 +145,16 @@ namespace bulls_and_cows
                         {
                             switch (input[i])
                             {
-                                case '0':
-                                    answer[i] = 0;
-                                    break;
-                                case '1':
-                                    answer[i] = 1;
-                                    break;
-                                case '2':
-                                    answer[i] = 2;
-                                    break;
-                                case '3':
-                                    answer[i] = 3;
-                                    break;
-                                case '4':
-                                    answer[i] = 4;
-                                    break;
-                                case '5':
-                                    answer[i] = 5;
-                                    break;
-                                case '6':
-                                    answer[i] = 6;
-                                    break;
-                                case '7':
-                                    answer[i] = 7;
-                                    break;
-                                case '8':
-                                    answer[i] = 8;
-                                    break;
-                                case '9':
-                                    answer[i] = 9;
-                                    break;
+                                case '0': answer[i] = 0; break;
+                                case '1': answer[i] = 1; break;
+                                case '2': answer[i] = 2; break;
+                                case '3': answer[i] = 3; break;
+                                case '4': answer[i] = 4; break;
+                                case '5': answer[i] = 5; break;
+                                case '6': answer[i] = 6; break;
+                                case '7': answer[i] = 7; break;
+                                case '8': answer[i] = 8; break;
+                                case '9': answer[i] = 9; break;
                                 default:
                                     Console.WriteLine("ОШИБКА! Попробуйте ещё раз");
                                     error = true;
